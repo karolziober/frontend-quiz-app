@@ -1,0 +1,209 @@
+:root {
+  /* COLOUR */
+
+  /* Orange */
+  --color-orange-400: #ff7e35;
+  --color-orange-50: #fff5ed;
+
+  /* Red */
+  --color-red-500: #ee4564;
+
+  /* Neutral */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Grey */
+  --color-grey-500: #636c7f;
+  --color-grey-50: #f4f6fa;
+
+  /* Blue */
+  --color-blue-950: #2d3949;
+  --color-blue-900: #213551;
+  --color-blue-850: #3b4d66;
+  --color-blue-500: #306aff;
+  --color-blue-300: #abc1e1;
+  --color-blue-100: #edf1f9;
+  --color-blue-50: #ebf0ff;
+
+  /* Green */
+  --color-green-500: #2fd887;
+  --color-green-100: #e0f6ef;
+
+  /* Purple */
+  --color-purple-600: #a729f5;
+  --color-purple-100: #f4e7ff;
+
+  /* TYPOGRAPHY */
+
+  /* Font Families */
+  --font-family-base: "Rubik", sans-serif;
+
+  /* Text Preset 1 - Desktop */
+  --text-preset-1: 500 0.875rem/100% var(--font-family-base);
+
+  /* Text Preset 1 - Mobile */
+  --text-preset-1-mobile: 500 4.25rem/100% var(--font-family-base);
+
+  /* Text Preset 2 - Medium - Desktop */
+  --text-preset-2-medium: 500 4rem/100% var(--font-family-base);
+
+  /* Text Preset 2 - Medium - Mobile */
+  --text-preset-2-medium-mobile: 500 2.5rem/100% var(--font-family-base);
+
+  /* Text Preset 2 - Light - Desktop */
+  --text-preset-2-light: 300 4rem/100% var(--font-family-base);
+
+  /* Text Preset 2 - Light - Mobile */
+  --text-preset-2-light-mobile: 300 2.5rem/100% var(--font-family-base);
+
+  /* Text Preset 3 - Desktop */
+  --text-preset-3: 500 2.25rem/100% var(--font-family-base);
+
+  /* Text Preset 3 - Mobile */
+  --text-preset-3-mobile: 500 1.25rem/120% var(--font-family-base);
+
+  /* Text Preset 4 - Desktop */
+  --text-preset-4: 500 1.75rem/100% var(--font-family-base);
+
+  /* Text Preset 4 - Mobile */
+  --text-preset-4-mobile: 500 1.125rem/100% var(--font-family-base);
+
+  /* Text Preset 5 - Medium */
+  --text-preset-5-medium: 500 1.5rem/100% var(--font-family-base);
+
+  /* Text Preset 5 - Regular */
+  --text-preset-5-regular: 400 1.5rem/100% var(--font-family-base);
+
+  /* Text Preset 5 - Mobile (Italic) */
+  --text-preset-5-mobile: italic 400 0.875rem/150% var(--font-family-base);
+
+  /* Text Preset 6 - Italic */
+  --text-preset-6: italic 400 1.25rem/100% var(--font-family-base);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-grey-50);
+}
+
+main {
+}
+.quiz-nav {
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+}
+.quiz-nav,
+.quiz-nav__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.quiz-nav__left {
+  gap: 1rem;
+}
+
+.quiz-nav__logo {
+  padding: 0.375rem;
+  background-color: var(--color-purple-100);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.375rem;
+}
+.quiz-nav__text {
+  font: var(--text-preset-4-mobile);
+  color: var(--color-blue-900);
+}
+.quiz-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 2rem;
+  padding-inline: 1.5rem;
+  gap: 2.5rem;
+}
+
+.question-container__paragraph {
+  margin-block-end: 1rem;
+  font: var(--text-preset-5-mobile);
+  color: var(--color-grey-500);
+}
+
+.question-container__heading {
+  margin-block-end: 1.5rem;
+  font: var(--text-preset-3-mobile);
+  color: var(--color-blue-900);
+}
+
+.question-container__progress {
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.answer-container,
+.answer-container__fieldset {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+}
+
+.answer-container__fieldset {
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.answer-box,
+.answer-container__submit {
+  display: flex;
+  padding: 16px;
+  font: var(--text-preset-4-mobile);
+  border: 3px solid transparent;
+  border-radius: 0.75rem;
+  align-items: center;
+  gap: 16px;
+}
+.answer-box {
+  background-color: var(--color-white);
+  color: var(--color-blue-900);
+}
+.answer-box:has(input:checked) {
+  border: 3px solid var(--color-purple-600);
+}
+
+.answer-box:has(input:checked) .answer-box__label {
+  background-color: var(--color-purple-600);
+  color: var(--color-white);
+}
+
+.answer-box__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-grey-50);
+  border-radius: 6px;
+}
+
+.answer-container__submit {
+  background-color: var(--color-purple-600);
+  color: var(--color-white);
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+}
+
+.answer-container__submit:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

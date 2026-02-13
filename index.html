@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="main.js" type="module" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
     <link
       rel="icon"
@@ -10,6 +17,8 @@
       sizes="32x32"
       href="./assets/images/favicon-32x32.png"
     />
+
+    <link href="style.css" rel="stylesheet" />
 
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
@@ -21,8 +30,6 @@
             <div class="quiz-nav__logo">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
                 fill="none"
                 viewBox="0 0 40 40"
               >
@@ -32,48 +39,73 @@
                 />
               </svg>
             </div>
-            <div class="quiz-nav__text">Accessibility</div>
+            <div class="quiz-nav__text" id="quiz-title">Accessibility</div>
           </div>
           <div class="quiz-nav__right">
             <div class="quiz-nav__theme"></div>
           </div>
         </nav>
       </header>
-      <section class="question-container">
-        <div class="question-container__text">
-          <p>question 6 of 10</p>
-          <h1>Question text here</h1>
-        </div>
-        <div class="question-container__progress"></div>
-      </section>
-      <form class="answer-container">
-        <fieldset>
-          <legend>Select one answer</legend>
-          <label class="answer-box">
-            <input type="radio" value="0" name="answer" />
-            <span class="answer-box__label">A</span>
-            <span class="answer-box__answer">Answer wording A</span>
-          </label>
-          <label class="answer-box">
-            <input type="radio" value="1" name="answer" />
-            <span class="answer-box__label">B</span>
-            <span class="answer-box__answer">Answer wording B</span>
-          </label>
-          <label class="answer-box">
-            <input type="radio" value="2" name="answer" />
-            <span class="answer-box__label">C</span>
-            <span class="answer-box__answer">Answer wording C</span>
-          </label>
-          <label class="answer-box">
-            <input type="radio" value="3" name="answer" />
-            <span class="answer-box__label">D</span>
-            <span class="answer-box__answer">Answer wording D</span>
-          </label>
-        </fieldset>
-        <button class="answer-container__submit" id="submit">
-          Submit Answer
-        </button>
-      </form>
+      <div class="quiz-body">
+        <section class="question-container">
+          <div class="question-container__text-section">
+            <p class="question-container__paragraph">Question 6 of 10</p>
+            <h1 class="question-container__heading" id="question">
+              Which of these color contrast ratios defines the minimum WCAG 2.1
+              Level AA requirement for normal text?
+            </h1>
+          </div>
+          <div class="question-container__progress">progress bar here</div>
+        </section>
+        <form class="answer-container">
+          <fieldset class="answer-container__fieldset">
+            <legend class="visually-hidden">Select one answer</legend>
+            <label class="answer-box">
+              <input
+                type="radio"
+                value="0"
+                name="answer"
+                class="visually-hidden"
+              />
+              <span class="answer-box__label">A</span>
+              <span class="answer-box__answer">Answer wording A</span>
+            </label>
+            <label class="answer-box">
+              <input
+                type="radio"
+                value="1"
+                name="answer"
+                class="visually-hidden"
+              />
+              <span class="answer-box__label">B</span>
+              <span class="answer-box__answer">Answer wording B</span>
+            </label>
+            <label class="answer-box">
+              <input
+                type="radio"
+                value="2"
+                name="answer"
+                class="visually-hidden"
+              />
+              <span class="answer-box__label">C</span>
+              <span class="answer-box__answer">Answer wording C</span>
+            </label>
+            <label class="answer-box">
+              <input
+                type="radio"
+                value="3"
+                name="answer"
+                class="visually-hidden"
+              />
+              <span class="answer-box__label">D</span>
+              <span class="answer-box__answer">Answer wording D</span>
+            </label>
+          </fieldset>
+          <button class="answer-container__submit" id="submit">
+            Submit Answer
+          </button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
