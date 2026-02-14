@@ -177,12 +177,29 @@ main {
   background-color: var(--color-white);
   color: var(--color-blue-900);
 }
+
 .answer-box:has(input:checked) {
   border: 3px solid var(--color-purple-600);
 }
 
 .answer-box:has(input:checked) .answer-box__label {
   background-color: var(--color-purple-600);
+  color: var(--color-white);
+}
+
+.answer-box--incorrect:has(input:checked) {
+  border: 3px solid var(--color-red-500);
+}
+.answer-box--incorrect:has(input:checked) .answer-box__label {
+  background-color: var(--color-red-500);
+  color: var(--color-white);
+}
+
+.answer-box--correct:has(input:checked) {
+  border: 3px solid var(--color-green-500);
+}
+.answer-box--correct:has(input:checked) .answer-box__label {
+  background-color: var(--color-green-500);
   color: var(--color-white);
 }
 
@@ -201,9 +218,16 @@ main {
   color: var(--color-white);
   justify-content: center;
   transition: 0.2s ease-in-out;
+  margin-block-end: 1rem;
 }
 
 .answer-container__submit:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.answer-container__error {
+  font: var(--text-preset-4-mobile);
+  color: var(--color-red-500);
+  text-align: center;
 }
