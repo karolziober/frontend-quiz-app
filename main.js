@@ -3,7 +3,11 @@
 class Quiz {
   constructor() {
     // Selectors
+    this.quizNav = document.querySelector(".quiz-nav__left");
     this.quizTitle = document.getElementById("quiz-title");
+    this.menu = document.querySelector(".menu");
+    this.menuBtnsAll = document.querySelector(".menu__btns");
+
     this.question = document.getElementById("question");
     this.questionParagraph = document.querySelector(
       ".question-container__paragraph",
@@ -24,7 +28,7 @@ class Quiz {
       currentQuiz: 0,
       currentQuestion: 0,
       currentScore: 0,
-      phase: "score",
+      phase: "menu",
     };
 
     this.init();
@@ -33,8 +37,10 @@ class Quiz {
   async init() {
     await this.loadData();
     this.renderPage();
+    this.menuBtnHandle();
     this.removeSubmitError();
-    this.handleSubmitClick();
+    // this.handleSubmitClick();
+    this.initSubmitButton();
   }
 
   async loadData() {
@@ -89,7 +95,7 @@ class Quiz {
   }
 
   renderPage() {
-    // this.updateView();
+    this.updateView();
     this.resetAnswerBoxes();
     this.returnCurrentQuiz();
     this.setAnsweringPhase();
@@ -156,15 +162,28 @@ class Quiz {
     }
   }
 
-  handleSubmitClick() {
+  setMenuState() {
+    this.USERSTATE.phase = "menu";
+    this.USERSTATE.currentQuestion = 0;
+    this.updateView();
+    this.renderPage();
+  }
+
+  initSubmitButton() {
     this.submitBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (this.USERSTATE.phase === "answering") {
-        this.submitAnswer();
-      } else if (this.USERSTATE.phase === "submitted") {
-        this.nextQuestion();
-      }
+      this.handleSubmitClick();
     });
+  }
+
+  handleSubmitClick() {
+    const actions = {
+      answering: () => this.submitAnswer(),
+      submitted: () => this.nextQuestion(),
+      score: () => this.setMenuState(),
+    };
+    const action = actions[this.USERSTATE.phase];
+    if (action) action();
   }
 
   displayScoreScreen() {
@@ -176,14 +195,52 @@ class Quiz {
       this.USERSTATE.currentScore;
     document.querySelector(".score-box__off").textContent =
       `Out of ${this.data.quizzes[`${this.USERSTATE.currentQuiz}`].questions.length}`;
+    this.submitBtn.textContent = "Play Again";
+  }
+
+  menuBtnHandle() {
+    this.menuBtnsAll.addEventListener("click", (e) => {
+      const btn = e.target.closest(".menu__btn");
+
+      if (!btn) return;
+      this.USERSTATE.currentQuiz = e.target.dataset.value;
+
+      this.setAnsweringPhase();
+      this.updateView();
+      this.renderPage();
+    });
   }
 
   updateView() {
     const viewStates = {
-      menu: null,
-      answering: { showScore: false, showQuestions: true },
-      submitted: { showScore: false, showQuestions: true },
-      score: { showScore: true, showQuestions: false },
+      menu: {
+        showScore: false,
+        showQuestions: false,
+        showMenu: true,
+        showSubmit: false,
+        showNav: false,
+      },
+      answering: {
+        showScore: false,
+        showQuestions: true,
+        showMenu: false,
+        showSubmit: true,
+        showNav: true,
+      },
+      submitted: {
+        showScore: false,
+        showQuestions: true,
+        showMenu: false,
+        showSubmit: true,
+        showNav: true,
+      },
+      score: {
+        showScore: true,
+        showQuestions: false,
+        showMenu: false,
+        showSubmit: true,
+        showNav: true,
+      },
     };
 
     const state = viewStates[this.USERSTATE.phase];
@@ -201,6 +258,13 @@ class Quiz {
       "answer-container__fieldset--hidden",
       !state.showQuestions,
     );
+
+    this.menu.classList.toggle("menu--hidden", !state.showMenu);
+    this.submitBtn.classList.toggle(
+      "answer-container__submit--hidden",
+      !state.showSubmit,
+    );
+    this.quizNav.classList.toggle("quiz-nav__left--hidden", !state.showNav);
   }
 }
 new Quiz();
