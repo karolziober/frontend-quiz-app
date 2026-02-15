@@ -179,22 +179,28 @@ class Quiz {
   }
 
   updateView() {
-    if (this.USERSTATE.phase === "menu") {
-      return;
-    } else if (
-      this.USERSTATE.phase === "answering" ||
-      this.USERSTATE.phase === "submitted"
-    ) {
-      this.quizCompleted.classList.remove("quiz-completed--visible");
-      this.questionContainer.classList.remove("question-container--hidden");
-      this.answerFieldSet.classList.remove(
-        "answer-container__fieldset--hidden",
-      );
-    } else if (this.USERSTATE.phase === "score") {
-      this.quizCompleted.classList.add("quiz-completed--visible");
-      this.questionContainer.classList.add("question-container--hidden");
-      this.answerFieldSet.classList.add("answer-container__fieldset--hidden");
-    }
+    const viewStates = {
+      menu: null,
+      answering: { showScore: false, showQuestions: true },
+      submitted: { showScore: false, showQuestions: true },
+      score: { showScore: true, showQuestions: false },
+    };
+
+    const state = viewStates[this.USERSTATE.phase];
+    if (!state) return;
+
+    this.quizCompleted.classList.toggle(
+      "quiz-completed--visible",
+      state.showScore,
+    );
+    this.questionContainer.classList.toggle(
+      "question-container--hidden",
+      !state.showQuestions,
+    );
+    this.answerFieldSet.classList.toggle(
+      "answer-container__fieldset--hidden",
+      !state.showQuestions,
+    );
   }
 }
 new Quiz();
